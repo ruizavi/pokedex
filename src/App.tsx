@@ -1,7 +1,11 @@
-import "./App.css";
+import PokedexGrid from "./components/PokedexGrid";
 
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div className="h-screen">
+      <PokedexGrid />
+    </div>
+  );
 };
 
 export default App;
