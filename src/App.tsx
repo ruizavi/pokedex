@@ -1,9 +1,9 @@
-import PokedexGrid from "./components/PokedexGrid";
+import Pokedex from "./components/PokedexGrid";
 
 const App = () => {
   return (
-    <div className="h-screen">
-      <PokedexGrid />
+    <div style={{ overflowY: "hidden", height: "100vh" }}>
+      <Pokedex />
     </div>
   );
 };

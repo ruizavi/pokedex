@@ -1,4 +1,4 @@
-export interface Pagination<T = unknown> {
+export interface IPagination<T = unknown> {
   count: number;
   next: string;
   previous: string;
