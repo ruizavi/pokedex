@@ -81,6 +81,8 @@ const Pokedex = () => {
         totalPages={pagination.total}
         current={pagination.page}
       />
+      {/* <div className="modal">
+      </div> */}
     </>
   );
 };
