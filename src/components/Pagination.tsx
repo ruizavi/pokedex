@@ -1,32 +1,24 @@
+import { useContext } from "react";
+import { PokemonContext, IPokemonContext } from "../context/pokemonContext";
 import Arrow from "./Arrow";
 
-interface PaginationProps {
-  pageUp: () => void;
-  pageDown: () => void;
-  changePage: (i: number) => void;
-  totalPages: number;
-  current: number;
-}
+const Pagination = () => {
+  const { pagination, pageDown, pageUp, changePage } = useContext(
+    PokemonContext
+  ) as IPokemonContext;
 
-const Pagination = ({
-  changePage,
-  pageDown,
-  pageUp,
-  totalPages,
-  current,
-}: PaginationProps) => {
   return (
     <div className="pagination">
-      <button onClick={pageDown} disabled={current === 0}>
+      <button onClick={pageDown} disabled={pagination.page === 0}>
         <Arrow />
       </button>
       <div className="pagination-list">
-        {Array(totalPages)
+        {Array(pagination.total)
           .fill(0)
           .map((_, i) => (
             <span
               className={`pagination-item ${
-                current === i ? "pagination-item-active" : ""
+                pagination.page === i ? "pagination-item-active" : ""
               }`}
               key={i}
               onClick={() => changePage(i)}
@@ -35,7 +27,10 @@ const Pagination = ({
             </span>
           ))}
       </div>
-      <button onClick={pageUp} disabled={current === totalPages - 1}>
+      <button
+        onClick={pageUp}
+        disabled={pagination.page === pagination.page - 1}
+      >
         <Arrow degree={180} />
       </button>
     </div>

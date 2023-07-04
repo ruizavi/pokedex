@@ -4,16 +4,18 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { PokemonMin, PokemonResponse } from "../interface/pokemon";
+import { Pokemon, PokemonMin, PokemonResponse } from "../interface/pokemon";
 import api from "../libs/axios";
 import { IPagination, IPaginationResponse } from "../interface/pagination";
 
 export interface IPokemonContext {
   pokemons: PokemonMin[];
+  pokemon: Pokemon | null;
   pagination: IPagination;
   pageUp: () => void;
   pageDown: () => void;
   changePage: (i: number) => void;
+  selectPokemon: (p: Pokemon | null) => void;
 }
 
 export const PokemonContext = createContext<IPokemonContext | null>(null);
@@ -26,7 +28,8 @@ const PokemonProvider: React.FC<PropsWithChildren> = ({ children }) => {
     total: 1,
   });
 
-  const [pokemons, setResult] = useState<PokemonMin[]>([]);
+  const [pokemons, setPokemons] = useState<PokemonMin[]>([]);
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
   useEffect(() => {
     const fetching = async () => {
@@ -39,7 +42,7 @@ const PokemonProvider: React.FC<PropsWithChildren> = ({ children }) => {
         total: Math.ceil(data.count / pagination.limit),
       });
 
-      setResult(
+      setPokemons(
         data.results.map((p) => ({
           name: p.name,
           id: p.url
@@ -75,9 +78,21 @@ const PokemonProvider: React.FC<PropsWithChildren> = ({ children }) => {
     });
   };
 
+  const selectPokemon = (p: Pokemon | null) => {
+    setPokemon(p);
+  };
+
   return (
     <PokemonContext.Provider
-      value={{ pokemons, pagination, pageDown, pageUp, changePage }}
+      value={{
+        pokemons,
+        pokemon,
+        pagination,
+        pageDown,
+        pageUp,
+        changePage,
+        selectPokemon,
+      }}
     >
       {children}
     </PokemonContext.Provider>

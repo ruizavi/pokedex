@@ -1,31 +1,16 @@
 import { useContext } from "react";
+import { PokemonContext, IPokemonContext } from "../context/pokemonContext";
 import PokedexCard from "./PokedexCard";
-import Pagination from "./Pagination";
-import { IPokemonContext, PokemonContext } from "../context/pokemonContext";
 
-const Pokedex = () => {
-  const { pokemons, pagination, pageDown, pageUp, changePage } = useContext(
-    PokemonContext
-  ) as IPokemonContext;
-
+const PokedexGrid = () => {
+  const { pokemons } = useContext(PokemonContext) as IPokemonContext;
   return (
-    <>
-      <div className="pokedex-grid">
-        {pokemons.map((p, i) => (
-          <PokedexCard id={p.id} key={i} />
-        ))}
-      </div>
-      <Pagination
-        pageUp={pageUp}
-        pageDown={pageDown}
-        changePage={changePage}
-        totalPages={pagination.total}
-        current={pagination.page}
-      />
-      {/* <div className="modal">
-      </div> */}
-    </>
+    <div className="pokedex-grid">
+      {pokemons.map((p, i) => (
+        <PokedexCard id={p.id} key={i} />
+      ))}
+    </div>
   );
 };
 
-export default Pokedex;
+export default PokedexGrid;

@@ -1,4 +1,4 @@
-import Pokedex from "./components/PokedexGrid";
+import Pokedex from "./components/Pokedex";
 import PokemonProvider from "./context/pokemonContext";
 
 const App = () => {
