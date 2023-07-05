@@ -29,7 +29,7 @@ const Pagination = () => {
       </div>
       <button
         onClick={pageUp}
-        disabled={pagination.page === pagination.page - 1}
+        disabled={pagination.page == pagination.total - 1}
       >
         <Arrow degree={180} />
       </button>
