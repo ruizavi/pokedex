@@ -39,7 +39,8 @@
 }
 
 /*Pokedex element*/
-.pokedex-card {
+.pokedex-card,
+.loader {
   border: 1px solid black;
   border-radius: 4px;
   font-size: 16px;
@@ -64,6 +65,28 @@
   margin: 8px;
   position: absolute;
   width: 24px;
+}
+
+/*Pokeball*/
+.loader {
+  display: flex;
+}
+
+.pokeball {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  animation: pokeball 1.5s infinite;
+}
+
+@keyframes pokeball {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /*Pagination*/
