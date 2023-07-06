@@ -5,7 +5,7 @@ export interface IPaginationResponse<T = unknown> {
   results: T[];
 }
 
-export interface IPagination<T = unknown> {
+export interface IPagination {
   limit: number;
   offset: number;
   page: number;
