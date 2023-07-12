@@ -1,13 +1,16 @@
 import { Pokemon } from "../interface/pokemon";
 import Loader from "./Loader";
 import usePokemon from "../hooks/usePokemon";
+import { useContext } from "react";
+import { IPokemonContext, PokemonContext } from "../context/pokemonContext";
 
 interface PokedexRowProps {
   id: string;
 }
 
 const PokedexCard = ({ id }: PokedexRowProps) => {
-  const { data, isFetching, selectPokemon } = usePokemon(id);
+  const { data, isFetching } = usePokemon(id);
+  const { selectPokemon } = useContext(PokemonContext) as IPokemonContext;
 
   return isFetching ? (
     <Loader />

@@ -29,10 +29,10 @@
 
 /*Responsive grid*/
 .pokedex-grid {
+  height: calc(100% - 80px);
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  height: 80%;
   justify-content: center;
   overflow-y: scroll;
   padding: 0.75rem 0;
@@ -92,7 +92,9 @@
 /*Pagination*/
 
 .pagination {
-  height: 20%;
+  margin: auto;
+  height: 64px;
+  max-width: 512px;
   display: flex;
   justify-content: center;
   align-items: center;

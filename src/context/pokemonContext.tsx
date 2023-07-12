@@ -1,7 +1,9 @@
 import React, {
   PropsWithChildren,
   createContext,
+  useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { Pokemon, PokemonMin, PokemonResponse } from "../interface/pokemon";
@@ -53,14 +55,16 @@ const PokemonProvider: React.FC<PropsWithChildren> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination.page]);
 
-  const selectPokemon = (p: Pokemon | null) => {
+  const selectPokemon = useCallback((p: Pokemon | null) => {
     setPokemon(p);
-  };
+  }, []);
+
+  const pokemonsMemoized = useMemo(() => pokemons, [pokemons]);
 
   return (
     <PokemonContext.Provider
       value={{
-        pokemons,
+        pokemons: pokemonsMemoized,
         pokemon,
         pagination,
         pageDown,

@@ -9,6 +9,17 @@ const PokemonModal = () => {
   return (
     <div className="modal">
       <button onClick={() => selectPokemon(null)}>x</button>
+      <img src={pokemon?.sprites.front_default} />
+      <div>
+        <h1>{pokemon?.name}</h1>
+        <ul>
+          {pokemon?.types.map((t, i) => (
+            <li key={i} className={t.type.name}>
+              {t.type.name}
+            </li>
+          ))}
+        </ul>
+      </div>
       {pokemon?.name}
     </div>
   );

@@ -1,10 +1,8 @@
-import { useContext, useState, useEffect } from "react";
-import { PokemonContext, IPokemonContext } from "../context/pokemonContext";
+import { useState, useEffect } from "react";
 import { Pokemon } from "../interface/pokemon";
 import api from "../libs/axios";
 
 const usePokemon = (id: string) => {
-  const { selectPokemon } = useContext(PokemonContext) as IPokemonContext;
   const [data, setData] = useState<Pokemon>();
   const [isFetching, setIsFetching] = useState<boolean>(true);
 
@@ -20,7 +18,7 @@ const usePokemon = (id: string) => {
     fetching().catch();
   }, [id, isFetching]);
 
-  return { data, isFetching, selectPokemon };
+  return { data, isFetching };
 };
 
 export default usePokemon;

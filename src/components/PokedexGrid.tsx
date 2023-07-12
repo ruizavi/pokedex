@@ -4,7 +4,7 @@ import PokedexCard from "./PokedexCard";
 
 const PokedexGrid = () => {
   const { pokemons } = useContext(PokemonContext) as IPokemonContext;
-  
+
   return (
     <div className="pokedex-grid">
       {pokemons.map((p, i) => (
