@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import { PokemonMin, IPagination, IPaginationResponse, PokemonResponse } from "..";
+import {
+  PokemonMin,
+  IPagination,
+  IPaginationResponse,
+  PokemonResponse,
+} from "..";
 import api from "../libs/axios";
 
 function usePokedex() {
   const [data, setData] = useState<PokemonMin[]>([]);
   const [pagination, setPagination] = useState<IPagination>({
-    limit: 52,
+    limit: window.innerWidth < 769 ? 20 : 52,
     offset: 0,
     page: 0,
     total: 1,

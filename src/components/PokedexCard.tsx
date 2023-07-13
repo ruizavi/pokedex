@@ -13,7 +13,7 @@ function PokedexCard({ image, name, type, isFetching, open }: Props) {
     <Loader />
   ) : (
     <div className={`pokedex-card ${type}`} onClick={open}>
-      <img src={image} alt={`pokemon`} title="..." loading="lazy" />
+      <img src={image} alt={name} title={name} width={96} height={96}/>
       <p>{name}</p>
     </div>
   );
