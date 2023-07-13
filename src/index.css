@@ -27,6 +27,10 @@
   font-family: "DotGothic16", sans-serif;
 }
 
+ul {
+  list-style: none;
+}
+
 /*Responsive grid*/
 .pokedex-grid {
   height: calc(100% - 80px);
@@ -125,20 +129,75 @@
 }
 
 /*Modal*/
-.modal {
+.modal-container {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
   z-index: 1;
+}
+
+.modal {
+  z-index: 2;
   background: white;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 16px;
-  width: 75%;
-  height: 80%;
+  width: 372px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
+.modal button {
+  height: 32px;
+  width: 32px;
+  font-size: 1.15rem;
+  position: absolute;
+  margin: 16px;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+  border: none;
+  background: none;
+}
+
+.modal button:hover {
+  fill: white;
+  background: var(--fighting);
+}
+
+.modal img {
+  width: 372px;
+  margin: auto;
+}
+
+.modal h1 {
+  text-align: center;
+}
+
+.modal ul {
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.modal ul li {
+  padding: 8px;
+  border: 1px dashed #2f2f2f;
+}
+
+.modal #pokemon-stats {
+  padding: 0 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.modal > p,
+.modal #pokemon-stats {
+  padding: 8px 16px;
+}
 /*Background for types*/
 .grass {
   background: var(--grass);
