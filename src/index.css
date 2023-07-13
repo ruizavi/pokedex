@@ -126,6 +126,7 @@
 
 /*Modal*/
 .modal {
+  z-index: 1;
   background: white;
   position: absolute;
   left: 50%;

@@ -1,16 +1,40 @@
-import { useContext } from "react";
-import { PokemonContext, IPokemonContext } from "../context/pokemonContext";
 import Arrow from "./Arrow";
 
-const PaginationPage = () => {
-  const { pagination, changePage } = useContext(
-    PokemonContext
-  ) as IPokemonContext;
+interface Props {
+  pageDown: () => void;
+  pageUp: () => void;
+  changePage: (p: number) => void;
+  current: number;
+  total: number;
+}
 
+type PaginationPageProps = Omit<Props, "pageDown" | "pageUp">;
+
+function Pagination({ changePage, current, pageDown, pageUp, total }: Props) {
+  return (
+    <div className="pagination">
+      <button onClick={pageDown} disabled={current === 0}>
+        <Arrow />
+      </button>
+      <div className="pagination-list">
+        <PaginationPage
+          changePage={changePage}
+          current={current}
+          total={total}
+        />
+      </div>
+      <button onClick={pageUp} disabled={current === total - 1}>
+        <Arrow degree={180} />
+      </button>
+    </div>
+  );
+}
+
+function PaginationPage({ changePage, current, total }: PaginationPageProps) {
   const getPageRange = () => {
     const rangeSize = 1;
-    const totalPages = pagination.total;
-    const currentPage = pagination.page + 1;
+    const totalPages = total;
+    const currentPage = current + 1;
 
     let rangeStart = Math.max(1, currentPage - rangeSize);
     let rangeEnd = Math.min(totalPages, currentPage + rangeSize);
@@ -37,7 +61,7 @@ const PaginationPage = () => {
       pages.push(
         <span
           className={`pagination-item ${
-            pagination.page === i - 1 ? "pagination-item-active" : ""
+            current === i - 1 ? "pagination-item-active" : ""
           }`}
           key={i}
           onClick={() => changePage(i - 1)}
@@ -71,29 +95,6 @@ const PaginationPage = () => {
   };
 
   return <>{getPageRange()}</>;
-};
-
-const Pagination = () => {
-  const { pagination, pageDown, pageUp } = useContext(
-    PokemonContext
-  ) as IPokemonContext;
-
-  return (
-    <div className="pagination">
-      <button onClick={pageDown} disabled={pagination.page === 0}>
-        <Arrow />
-      </button>
-      <div className="pagination-list">
-        <PaginationPage />
-      </div>
-      <button
-        onClick={pageUp}
-        disabled={pagination.page === pagination.total - 1}
-      >
-        <Arrow degree={180} />
-      </button>
-    </div>
-  );
-};
+}
 
 export default Pagination;

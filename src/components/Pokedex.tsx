@@ -1,19 +1,24 @@
-import { useContext } from "react";
+import usePokedex from "../hooks/usePokedex";
 import Pagination from "./Pagination";
-import { IPokemonContext, PokemonContext } from "../context/pokemonContext";
-import PokemonModal from "./PokemonModal";
 import PokedexGrid from "./PokedexGrid";
 
-const Pokedex = () => {
-  const { pokemon } = useContext(PokemonContext) as IPokemonContext;
+
+
+function Pokedex() {
+  const { pagination, pageUp, pageDown, changePage, data } = usePokedex();
 
   return (
     <>
-      <PokedexGrid />
-      <Pagination />
-      {pokemon !== null ? <PokemonModal /> : null}
+      <PokedexGrid data={data} />
+      <Pagination
+        changePage={changePage}
+        pageDown={pageDown}
+        pageUp={pageUp}
+        current={pagination.page}
+        total={pagination.total}
+      />
     </>
   );
-};
+}
 
 export default Pokedex;

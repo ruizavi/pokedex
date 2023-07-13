@@ -1,4 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+export interface IPaginationResponse<T = unknown> {
+  count: number;
+  next: string;
+  previous: string;
+  results: T[];
+}
+
+export interface IPagination {
+  limit: number;
+  offset: number;
+  page: number;
+  total: number;
+}
+
 export interface PokemonResponse {
   name: string;
   url: string;

@@ -1,17 +1,18 @@
-import { useContext } from "react";
-import { PokemonContext, IPokemonContext } from "../context/pokemonContext";
-import PokedexCard from "./PokedexCard";
+import { PokemonMin } from "..";
+import Pokemon from "./Pokemon";
 
-const PokedexGrid = () => {
-  const { pokemons } = useContext(PokemonContext) as IPokemonContext;
+interface Props {
+  data: PokemonMin[];
+}
 
+function PokedexGrid({ data }: Props) {
   return (
     <div className="pokedex-grid">
-      {pokemons.map((p, i) => (
-        <PokedexCard id={p.id} key={i} />
+      {data.map((p, i) => (
+        <Pokemon id={p.id} key={i} />
       ))}
     </div>
   );
-};
+}
 
 export default PokedexGrid;

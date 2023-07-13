@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { IPokemonContext, PokemonContext } from "../context/pokemonContext";
+import { Pokemon } from "..";
 
-const PokemonModal = () => {
-  const { pokemon, selectPokemon } = useContext(
-    PokemonContext
-  ) as IPokemonContext;
+interface Props {
+  pokemon: Pokemon | undefined;
+  close: () => void;
+}
 
+function PokemonModal({ pokemon, close }: Props) {
   return (
     <div className="modal">
-      <button onClick={() => selectPokemon(null)}>x</button>
+      <button onClick={close}>x</button>
       <img src={pokemon?.sprites.front_default} />
       <div>
         <h1>{pokemon?.name}</h1>
@@ -23,6 +23,6 @@ const PokemonModal = () => {
       {pokemon?.name}
     </div>
   );
-};
+}
 
 export default PokemonModal;

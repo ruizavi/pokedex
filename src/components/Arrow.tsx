@@ -1,8 +1,8 @@
-interface ArrowProps {
+interface Props {
   degree?: number;
 }
 
-const Arrow = ({ degree = 0 }: ArrowProps) => {
+function Arrow({ degree = 0 }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +17,6 @@ const Arrow = ({ degree = 0 }: ArrowProps) => {
       </g>
     </svg>
   );
-};
+}
 
 export default Arrow;

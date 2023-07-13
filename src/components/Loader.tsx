@@ -1,11 +1,11 @@
 import Pokeball from "./Pokeball";
 
-const Loader = () => {
+function Loader() {
   return (
     <div className="loader">
       <Pokeball />
     </div>
   );
-};
+}
 
 export default Loader;

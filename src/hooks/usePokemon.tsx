@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { Pokemon } from "../interface/pokemon";
+import { useState, useEffect, useCallback } from "react";
 import api from "../libs/axios";
+import { Pokemon } from "..";
 
 const usePokemon = (id: string) => {
   const [data, setData] = useState<Pokemon>();
-  const [isFetching, setIsFetching] = useState<boolean>(true);
+  const [isFetching, setIsFetching] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetching = async () => {
@@ -18,7 +19,10 @@ const usePokemon = (id: string) => {
     fetching().catch();
   }, [id, isFetching]);
 
-  return { data, isFetching };
+  const openModal = useCallback(() => setOpen(true), []);
+  const closeModal = useCallback(() => setOpen(false), []);
+
+  return { data, isFetching, openModal, closeModal, open };
 };
 
 export default usePokemon;

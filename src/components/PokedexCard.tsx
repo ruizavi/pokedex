@@ -1,33 +1,22 @@
-import { Pokemon } from "../interface/pokemon";
 import Loader from "./Loader";
-import usePokemon from "../hooks/usePokemon";
-import { useContext } from "react";
-import { IPokemonContext, PokemonContext } from "../context/pokemonContext";
 
-interface PokedexRowProps {
-  id: string;
+interface Props {
+  image: string;
+  name: string;
+  type: string;
+  isFetching: boolean;
+  open: () => void;
 }
 
-const PokedexCard = ({ id }: PokedexRowProps) => {
-  const { data, isFetching } = usePokemon(id);
-  const { selectPokemon } = useContext(PokemonContext) as IPokemonContext;
-
+function PokedexCard({ image, name, type, isFetching, open }: Props) {
   return isFetching ? (
     <Loader />
   ) : (
-    <div
-      className={`pokedex-card ${data?.types[0].type.name ?? ""}`}
-      onClick={() => selectPokemon(data as Pokemon)}
-    >
-      <img
-        src={data?.sprites.front_default}
-        alt={`pokemon`}
-        title="..."
-        loading="lazy"
-      />
-      <p>{data?.name}</p>
+    <div className={`pokedex-card ${type}`} onClick={open}>
+      <img src={image} alt={`pokemon`} title="..." loading="lazy" />
+      <p>{name}</p>
     </div>
   );
-};
+}
 
 export default PokedexCard;
