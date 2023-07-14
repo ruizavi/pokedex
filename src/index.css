@@ -33,7 +33,7 @@ ul {
 
 /*Responsive grid*/
 .pokedex-grid {
-  height: calc(100% - 80px);
+  height: calc(100% - 96px - 32px);
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -128,6 +128,16 @@ ul {
     center no-repeat;
 }
 
+/*Search*/
+.pokemon-search {
+  border: none;
+  border-bottom: 1px solid black;
+  max-height: 24px;
+  display: block;
+  margin: 8px auto 0 auto;
+  padding: 4px;
+}
+
 /*Modal*/
 .modal-container {
   height: 100vh;
@@ -137,7 +147,7 @@ ul {
 }
 
 .modal {
-  z-index: 2;
+  z-index: 10;
   background: white;
   position: absolute;
   left: 50%;
