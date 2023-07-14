@@ -9,7 +9,7 @@ function Search() {
   const [data, setData] = useState<Pokemon>();
   const [open, setOpen] = useState(false);
 
-  const debounced = useDebounce(search, 500);
+  const debounced = useDebounce(search.toLocaleLowerCase(), 500);
 
   useEffect(() => {
     if (search === "") return;
