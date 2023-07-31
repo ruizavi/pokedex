@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import {  useEffect, useRef } from "react";
 import { Pokemon } from "..";
 import Close from "./Close";
 
@@ -10,26 +10,24 @@ interface Props {
 function PokemonModal({ pokemon, close }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleClose = useCallback((e: KeyboardEvent) => {
-    console.log("eee")
+  const handleClose = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
-      close;
+      close();
     }
-  }, []);
+  }
 
   useEffect(() => {
     const element = modalRef.current;
 
     if (element === null || element === undefined) return;
 
-    element.addEventListener("keydown", handleClose);
+    document.addEventListener("keydown", handleClose);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    return () => element.removeEventListener("keydown", handleClose);
+    return () => document.removeEventListener("keydown", handleClose);
   }, []);
 
   return (
-    <div className="modal-container" ref={modalRef} onClick={close}>
+    <div className="modal-container" ref={modalRef}>
       <div className="modal">
         <button onClick={close}>
           <Close size="16px" />
